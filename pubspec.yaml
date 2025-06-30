@@ -1,7 +1,7 @@
 name: connect_x_sdk_test
 description: "ConnectX SDK"
 version: 0.0.3
-homepage: https://github.com/chatchawarn-s/Flutter-sdk.git
+homepage: https://github.com/connect-x-team/connect-x-flutter-core-sdk.git
 
 environment:
   sdk: ^3.6.2
@@ -13,6 +13,7 @@ dependencies:
   http: ^1.4.0
   crypto: ^3.0.6
   shared_preferences: ^2.5.3
+  http_parser: ^4.1.2
 
 dev_dependencies:
   flutter_test:

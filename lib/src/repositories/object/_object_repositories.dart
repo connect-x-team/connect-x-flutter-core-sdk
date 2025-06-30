@@ -1,10 +1,12 @@
 import 'dart:convert';
 
 import 'package:connect_x_sdk_test/src/repositories/object/_object_provider.dart';
+import 'package:connect_x_sdk_test/src/repositories/upload/_upload_image_repositories.dart';
 import 'package:http/http.dart';
 
 class ObjectRepositories {
   ObjectProvider objectProvider = ObjectProvider();
+  UploadImageRepository uploadImageRepository = UploadImageRepository();
 
   getRecords({
     required String object,
@@ -41,9 +43,13 @@ class ObjectRepositories {
     required dynamic payload,
   }) async {
     try {
-      Response response = await objectProvider.createRecord(
+      dynamic newPayload = await uploadImageRepository.checkPayload(
         object: object,
         payload: payload,
+      );
+      Response response = await objectProvider.createRecord(
+        object: object,
+        payload: newPayload,
       );
       return json.decode(response.body);
     } catch (e) {
@@ -57,9 +63,13 @@ class ObjectRepositories {
     required dynamic payload,
   }) async {
     try {
-      Response response = await objectProvider.updateRecord(
+      dynamic newPayload = await uploadImageRepository.checkPayload(
         object: object,
         payload: payload,
+      );
+      Response response = await objectProvider.updateRecord(
+        object: object,
+        payload: newPayload,
         externalId: externalId,
       );
       return json.decode(response.body);

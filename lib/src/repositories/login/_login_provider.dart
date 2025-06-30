@@ -9,12 +9,12 @@ class LoginProvider {
       required String password,
       required String orgId}) async {
     Uri url = Uri.parse("${AppConfig.url}/connectx/api/auth/login/");
-
-    dynamic response = await httpService.post(url: url, body: {
+    dynamic body = {
       'email': email,
       'password': password,
       'stayLogin': "true",
-    });
+    };
+    dynamic response = await httpService.post(url: url, body: body, header: {});
     return response;
   }
 

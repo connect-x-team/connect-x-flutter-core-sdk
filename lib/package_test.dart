@@ -2,6 +2,7 @@ library connect_x_sdk_test;
 
 import 'package:connect_x_sdk_test/src/repositories/login/_login_repositories.dart';
 import 'package:connect_x_sdk_test/src/repositories/object/_object_repositories.dart';
+import 'package:connect_x_sdk_test/src/repositories/upload/_upload_image_repositories.dart';
 
 class ConnectXMobileSDK {
   login(
@@ -65,6 +66,15 @@ class ConnectXMobileSDK {
       payload: payload,
       externalId: externalId,
     );
+    return response;
+  }
+
+  uploadImage({
+    required String object,
+    required dynamic base64Image,
+  }) async {
+    dynamic response = await UploadImageRepository()
+        .uploadImage(object: object, base64Image: base64Image);
     return response;
   }
 
