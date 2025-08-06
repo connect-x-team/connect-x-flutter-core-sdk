@@ -25,7 +25,10 @@ class HttpService {
   }
 
   multipartRequest(
-      {required Uri url, dynamic body, required String file}) async {
+      {required Uri url,
+      dynamic body,
+      required String file,
+      required String object}) async {
     final request = http.MultipartRequest('POST', url);
     String removePrefix = file.split('base64,').last;
     Uint8List imageBytes = base64Decode(removePrefix);
@@ -40,7 +43,7 @@ class HttpService {
         await CoreServiceStorage().getItem(key: AppConfig.loginStorage);
     var decode = await json.decode(localProfile);
     String organizeId = decode['organizeId'];
-    request.fields['path'] = 'Organizes/$organizeId/objects/customers';
+    request.fields['path'] = 'Organizes/$organizeId/objects/$object';
 
     final response = await request.send();
     final respStr = await response.stream.bytesToString();
