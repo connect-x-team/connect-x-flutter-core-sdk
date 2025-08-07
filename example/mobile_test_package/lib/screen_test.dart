@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:mobile_test_package/navigator.dart';
 import 'package:mobile_test_package/photo.dart';
-import 'package:connect_x_sdk_test/package_test.dart';
 
 class UploadYourPhotoScreen extends StatefulWidget {
   const UploadYourPhotoScreen({super.key});

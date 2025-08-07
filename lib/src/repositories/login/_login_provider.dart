@@ -27,6 +27,14 @@ class LoginProvider {
     return response;
   }
 
+  forgotPassword({required String email}) async {
+    Uri url = Uri.parse("${AppConfig.url}/connectx/api/auth/forgotPassword");
+    dynamic response = await httpService.post(url: url, body: {
+      "email": email,
+    });
+    return response;
+  }
+
   logout() async {
     Uri url = Uri.parse("${AppConfig.url}/connectx/api/auth/logout");
     dynamic response = await httpService.get(url: url);

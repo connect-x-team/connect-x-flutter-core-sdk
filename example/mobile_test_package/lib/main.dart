@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:connect_x_sdk_test/package_test.dart';
+import 'package:connect_x_sdk_test/connect_x_sdk_test.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_test_package/navigator.dart';
 import 'package:mobile_test_package/photo.dart';

@@ -46,6 +46,15 @@ class LoginRepositories {
     }
   }
 
+  forgotPassword({required String email}) async {
+    try {
+      dynamic response = await loginProvider.forgotPassword(email: email);
+      return response;
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
   logout() async {
     try {
       dynamic response = await loginProvider.logout();
