@@ -135,6 +135,24 @@ class _MyHomePageState extends State<MyHomePage> {
               SizedBox(
                 height: 16,
               ),
+              SizedBox(
+                height: 16,
+              ),
+              InkWell(
+                onTap: () async {
+                  dynamic res = await ConnectXMobileSDK().forgotPassword(
+                    username: "chatchawarn@m-intelligence.tech",
+                  );
+                  print(res);
+                },
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  child: Text('forgot password'),
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
               InkWell(
                 onTap: () async {
                   dynamic res = await ConnectXMobileSDK().createRecords(

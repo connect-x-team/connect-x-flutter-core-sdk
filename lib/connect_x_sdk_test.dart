@@ -78,8 +78,9 @@ class ConnectXMobileSDK {
     return response;
   }
 
-  forgotPassword({required String email}) async {
-    dynamic response = await LoginRepositories().forgotPassword(email: email);
+  forgotPassword({required String username}) async {
+    dynamic response =
+        await LoginRepositories().forgotPassword(username: username);
     return response;
   }
 

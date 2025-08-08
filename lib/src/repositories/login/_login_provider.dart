@@ -27,10 +27,12 @@ class LoginProvider {
     return response;
   }
 
-  forgotPassword({required String email}) async {
+  forgotPassword({required String username}) async {
     Uri url = Uri.parse("${AppConfig.url}/connectx/api/auth/forgotPassword");
     dynamic response = await httpService.post(url: url, body: {
-      "email": email,
+      "username": username,
+    }, header: {
+      "Origin": "https://app.connect-x.tech"
     });
     return response;
   }
