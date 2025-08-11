@@ -77,4 +77,13 @@ class ObjectRepositories {
       return e.toString();
     }
   }
+
+  getSchemas({required String object}) async {
+    try {
+      dynamic response = await objectProvider.getSchemas(object: object);
+      return json.decode(response.body);
+    } catch (e) {
+      return e.toString();
+    }
+  }
 }

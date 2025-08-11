@@ -135,6 +135,21 @@ class _MyHomePageState extends State<MyHomePage> {
               SizedBox(
                 height: 16,
               ),
+              InkWell(
+                onTap: () async {
+                  dynamic res = await ConnectXMobileSDK().getschemas(
+                    object: 'lead',
+                  );
+                  print(res);
+                },
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  child: Text('getSchemas'),
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
               SizedBox(
                 height: 16,
               ),

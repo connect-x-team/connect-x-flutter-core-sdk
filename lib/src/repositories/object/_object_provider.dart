@@ -58,4 +58,13 @@ class ObjectProvider {
     );
     return response;
   }
+
+  getSchemas({required String object}) async {
+    Uri url =
+        Uri.parse("${AppConfig.url}/connectx/api/object/$object/getSchemas");
+    dynamic response = await httpService.post(
+      url: url,
+    );
+    return response;
+  }
 }

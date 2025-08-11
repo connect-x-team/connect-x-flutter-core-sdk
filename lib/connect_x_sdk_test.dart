@@ -88,4 +88,11 @@ class ConnectXMobileSDK {
     dynamic response = await LoginRepositories().logout();
     return response;
   }
+
+  getschemas({required String object}) async {
+    dynamic response = await ObjectRepositories().getSchemas(
+      object: object,
+    );
+    return response;
+  }
 }
