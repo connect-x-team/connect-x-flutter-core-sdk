@@ -1,3 +1,4 @@
-## 0.0.7
+## 0.0.8
 
-- add function get Schemas
+- add function external profile
+- update response body
