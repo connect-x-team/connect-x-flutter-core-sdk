@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:connect_x_sdk_test/src/repositories/object/_object_provider.dart';
 import 'package:connect_x_sdk_test/src/repositories/upload/_upload_image_repositories.dart';
 import 'package:http/http.dart';
@@ -17,7 +15,7 @@ class ObjectRepositories {
         object: object,
         payload: payload,
       );
-      return json.decode(response.body);
+      return response;
     } catch (e) {
       return e.toString();
     }
@@ -32,7 +30,7 @@ class ObjectRepositories {
         object: object,
         payload: payload,
       );
-      return json.decode(response.body);
+      return response;
     } catch (e) {
       return e.toString();
     }
@@ -51,7 +49,7 @@ class ObjectRepositories {
         object: object,
         payload: newPayload,
       );
-      return json.decode(response.body);
+      return response;
     } catch (e) {
       return e.toString();
     }
@@ -72,7 +70,7 @@ class ObjectRepositories {
         payload: newPayload,
         externalId: externalId,
       );
-      return json.decode(response.body);
+      return response;
     } catch (e) {
       return e.toString();
     }
@@ -81,7 +79,7 @@ class ObjectRepositories {
   getSchemas({required String object}) async {
     try {
       dynamic response = await objectProvider.getSchemas(object: object);
-      return json.decode(response.body);
+      return response;
     } catch (e) {
       return e.toString();
     }

@@ -36,6 +36,35 @@ class LoginRepositories {
     }
   }
 
+  loginExternalProfile({
+    required String username,
+    required String password,
+    required String orgId,
+  }) async {
+    try {
+      String message =
+          "$password${username.toLowerCase().trim()}${AppConfig.token}";
+      final key = utf8.encode(message);
+      final data = utf8.encode('');
+
+      final hmacSha1 = Hmac(sha1, key);
+      final digest = hmacSha1.convert(data);
+
+      Response response = await loginProvider.loginExternalProfile(
+        username: username,
+        password: digest.toString(),
+        orgId: orgId,
+      );
+      if (response.statusCode == 201) {
+        await CoreServiceStorage()
+            .setItem(key: AppConfig.loginStorage, value: response.body);
+      }
+      return json.decode(response.body);
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
   resetPassword({required String code, required String password}) async {
     try {
       dynamic response =

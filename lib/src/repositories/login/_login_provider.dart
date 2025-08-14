@@ -18,6 +18,21 @@ class LoginProvider {
     return response;
   }
 
+  loginExternalProfile(
+      {required String username,
+      required String password,
+      required String orgId}) async {
+    Uri url =
+        Uri.parse("${AppConfig.url}/connectx/api/auth/loginExternalProfile/");
+    dynamic body = {
+      'username': username,
+      'password': password,
+      'stayLogin': "true",
+    };
+    dynamic response = await httpService.post(url: url, body: body, header: {});
+    return response;
+  }
+
   resetPassword({required String code, required String password}) async {
     Uri url = Uri.parse("${AppConfig.url}/connectx/api/auth/resetPassword");
     dynamic response = await httpService.post(url: url, body: {

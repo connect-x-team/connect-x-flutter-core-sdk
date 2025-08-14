@@ -17,6 +17,18 @@ class ConnectXMobileSDK {
     return response;
   }
 
+  loginExternalProfile(
+      {required String username,
+      required String password,
+      required String orgId}) async {
+    dynamic response = await LoginRepositories().loginExternalProfile(
+      username: username,
+      password: password,
+      orgId: orgId,
+    );
+    return response;
+  }
+
   // resetPassword({required String code, required String password}) async {
   //   dynamic response =
   //       await LoginRepositories().resetPassword(code: code, password: password);

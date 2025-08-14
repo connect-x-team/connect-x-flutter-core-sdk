@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:connect_x_sdk_test/connect_x_sdk_test.dart';
@@ -79,9 +78,9 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               InkWell(
                 onTap: () async {
-                  dynamic res = await ConnectXMobileSDK().login(
-                    email: 'chatchawarn@m-intelligence.tech',
-                    password: 'Paplam@89',
+                  dynamic res = await ConnectXMobileSDK().loginExternalProfile(
+                    username: 'ppsi.external2',
+                    password: 'P@ssw0rd',
                     orgId: '',
                   );
                   print(res);
@@ -105,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     "q": "Mobile SDKTEST",
                     "where": "",
                   });
-                  log(res.toString());
+                  print(res.statusCode);
                 },
                 child: Container(
                   padding: EdgeInsets.all(16),
