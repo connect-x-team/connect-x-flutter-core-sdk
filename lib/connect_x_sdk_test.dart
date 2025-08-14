@@ -107,4 +107,17 @@ class ConnectXMobileSDK {
     );
     return response;
   }
+
+  editRecord({
+    required String object,
+    required String docId,
+    required dynamic payload,
+  }) async {
+    dynamic response = await ObjectRepositories().editRecord(
+      object: object,
+      docId: docId,
+      payload: payload,
+    );
+    return response;
+  }
 }

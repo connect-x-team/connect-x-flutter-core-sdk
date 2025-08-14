@@ -84,4 +84,25 @@ class ObjectRepositories {
       return e.toString();
     }
   }
+
+  editRecord({
+    required String object,
+    required String docId,
+    required dynamic payload,
+  }) async {
+    try {
+      dynamic newPayload = await uploadImageRepository.checkPayload(
+        object: object,
+        payload: payload,
+      );
+      Response response = await objectProvider.editRecord(
+        object: object,
+        payload: newPayload,
+        docId: docId,
+      );
+      return response;
+    } catch (e) {
+      return e.toString();
+    }
+  }
 }

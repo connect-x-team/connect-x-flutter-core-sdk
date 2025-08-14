@@ -1,4 +1,3 @@
-## 0.0.8
+## 0.0.9
 
-- add function external profile
-- update response body
+- add function editRecord

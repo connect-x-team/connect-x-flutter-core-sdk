@@ -13,6 +13,12 @@ class HttpService {
     return response;
   }
 
+  put({required Uri url, dynamic body, Map<String, String>? header}) async {
+    dynamic response =
+        await http.put(url, body: body, headers: header ?? await _header());
+    return response;
+  }
+
   get({required Uri url, Map<String, String>? header}) async {
     dynamic response = await http.get(url, headers: header ?? await _header());
     return response;

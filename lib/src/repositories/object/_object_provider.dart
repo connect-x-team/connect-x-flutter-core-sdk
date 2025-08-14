@@ -67,4 +67,16 @@ class ObjectProvider {
     );
     return response;
   }
+
+  editRecord(
+      {required String object,
+      required String docId,
+      required dynamic payload}) async {
+    Uri url = Uri.parse("${AppConfig.url}/connectx/api/object/$object/$docId");
+    dynamic response = await httpService.put(
+      url: url,
+      body: json.encode(payload),
+    );
+    return response;
+  }
 }
