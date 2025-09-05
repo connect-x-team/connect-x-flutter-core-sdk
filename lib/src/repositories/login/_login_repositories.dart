@@ -30,7 +30,7 @@ class LoginRepositories {
         await CoreServiceStorage()
             .setItem(key: AppConfig.loginStorage, value: response.body);
       }
-      return json.decode(response.body);
+      return response;
     } catch (e) {
       return e.toString();
     }
@@ -57,11 +57,7 @@ class LoginRepositories {
         orgId: orgId,
         sessionId: sessionId,
       );
-      if (response.statusCode == 201) {
-        await CoreServiceStorage()
-            .setItem(key: AppConfig.loginStorage, value: response.body);
-      }
-      return json.decode(response.body);
+      return response;
     } catch (e) {
       return e.toString();
     }
@@ -90,7 +86,7 @@ class LoginRepositories {
     try {
       dynamic response = await loginProvider.logout();
       await CoreServiceStorage().removeItem(key: AppConfig.loginStorage);
-      return json.decode(response.body);
+      return response;
     } catch (e) {
       return e.toString();
     }
@@ -108,6 +104,10 @@ class LoginRepositories {
   verifyOTP({required dynamic body}) async {
     try {
       dynamic response = await loginProvider.verifyOTP(body: body);
+      if (response.statusCode == 201) {
+        await CoreServiceStorage()
+            .setItem(key: AppConfig.loginStorage, value: response.body);
+      }
       return response;
     } catch (e) {
       return e.toString();

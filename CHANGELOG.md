@@ -1,5 +1,4 @@
-## 0.0.10
+## 0.0.11
 
-- add function sendOTP
-- add function verifyOTP
+- fix issue setItemLocalStorage
 
