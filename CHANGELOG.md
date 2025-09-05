@@ -1,3 +1,5 @@
-## 0.0.9
+## 0.0.10
 
-- add function editRecord
+- add function sendOTP
+- add function verifyOTP
+

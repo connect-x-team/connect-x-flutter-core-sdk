@@ -17,14 +17,17 @@ class ConnectXMobileSDK {
     return response;
   }
 
-  loginExternalProfile(
-      {required String username,
-      required String password,
-      required String orgId}) async {
+  loginExternalProfile({
+    required String username,
+    required String password,
+    required String orgId,
+    String? sessionId,
+  }) async {
     dynamic response = await LoginRepositories().loginExternalProfile(
       username: username,
       password: password,
       orgId: orgId,
+      sessionId: sessionId,
     );
     return response;
   }
@@ -118,6 +121,16 @@ class ConnectXMobileSDK {
       docId: docId,
       payload: payload,
     );
+    return response;
+  }
+
+  sendOTP({required dynamic body}) async {
+    dynamic response = await LoginRepositories().sendOTP(body: body);
+    return response;
+  }
+
+  verifyOTP({required dynamic body}) async {
+    dynamic response = await LoginRepositories().verifyOTP(body: body);
     return response;
   }
 }

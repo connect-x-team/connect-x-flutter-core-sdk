@@ -18,16 +18,19 @@ class LoginProvider {
     return response;
   }
 
-  loginExternalProfile(
-      {required String username,
-      required String password,
-      required String orgId}) async {
+  loginExternalProfile({
+    required String username,
+    required String password,
+    required String orgId,
+    String? sessionId,
+  }) async {
     Uri url =
         Uri.parse("${AppConfig.url}/connectx/api/auth/loginExternalProfile/");
     dynamic body = {
       'username': username,
       'password': password,
       'stayLogin': "true",
+      'sessionId': sessionId ?? "",
     };
     dynamic response = await httpService.post(url: url, body: body, header: {});
     return response;
@@ -55,6 +58,18 @@ class LoginProvider {
   logout() async {
     Uri url = Uri.parse("${AppConfig.url}/connectx/api/auth/logout");
     dynamic response = await httpService.get(url: url);
+    return response;
+  }
+
+  sendOTP({required dynamic body}) async {
+    Uri url = Uri.parse("${AppConfig.url}/connectx/api/auth/sendOTP");
+    dynamic response = await httpService.post(url: url, body: body, header: {});
+    return response;
+  }
+
+  verifyOTP({required dynamic body}) async {
+    Uri url = Uri.parse("${AppConfig.url}/connectx/api/auth/verifyOTP");
+    dynamic response = await httpService.post(url: url, body: body, header: {});
     return response;
   }
 }

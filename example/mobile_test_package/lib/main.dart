@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:connect_x_sdk_test/connect_x_sdk_test.dart';
@@ -45,6 +46,9 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
   dynamic payload = {};
 
+  dynamic users;
+  String sessionID = '';
+
   delectImage(dynamic item) async {
     item['image'] = null;
     setState(() {});
@@ -83,11 +87,55 @@ class _MyHomePageState extends State<MyHomePage> {
                     password: 'P@ssw0rd',
                     orgId: '',
                   );
-                  print(res);
+                  users = res;
+                  log('$users');
                 },
                 child: Container(
                   padding: EdgeInsets.all(16),
                   child: Text('Login'),
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              InkWell(
+                onTap: () async {
+                  dynamic body = {
+                    "userId": users['userId'],
+                    "mode": "sms",
+                    // "mobile": users['mobile'],
+                    "loginExternalProfile": "true",
+                    "stayLogin": "true",
+                    "sessionId": users['sessionId'],
+                  };
+                  dynamic res = await ConnectXMobileSDK().sendOTP(body: body);
+                  dynamic data = json.decode(res.body);
+                  sessionID = data['sessionId'];
+                },
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  child: Text('sendOTP'),
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              InkWell(
+                onTap: () async {
+                  dynamic body = {
+                    "userId": users['userId'],
+                    "sessionId": sessionID,
+                    "otpCode": "135238"
+                  };
+                  dynamic res = await ConnectXMobileSDK().verifyOTP(body: body);
+                  print(res.statusCode);
+                },
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  child: Text('verifyOTP'),
                 ),
               ),
               SizedBox(

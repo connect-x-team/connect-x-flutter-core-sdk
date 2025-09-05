@@ -40,6 +40,7 @@ class LoginRepositories {
     required String username,
     required String password,
     required String orgId,
+    String? sessionId,
   }) async {
     try {
       String message =
@@ -54,6 +55,7 @@ class LoginRepositories {
         username: username,
         password: digest.toString(),
         orgId: orgId,
+        sessionId: sessionId,
       );
       if (response.statusCode == 201) {
         await CoreServiceStorage()
@@ -89,6 +91,24 @@ class LoginRepositories {
       dynamic response = await loginProvider.logout();
       await CoreServiceStorage().removeItem(key: AppConfig.loginStorage);
       return json.decode(response.body);
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
+  sendOTP({required dynamic body}) async {
+    try {
+      dynamic response = await loginProvider.sendOTP(body: body);
+      return response;
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
+  verifyOTP({required dynamic body}) async {
+    try {
+      dynamic response = await loginProvider.verifyOTP(body: body);
+      return response;
     } catch (e) {
       return e.toString();
     }
