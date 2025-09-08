@@ -133,4 +133,10 @@ class ConnectXMobileSDK {
     dynamic response = await LoginRepositories().verifyOTP(body: body);
     return response;
   }
+
+  getExternalObject({required String object, required String param}) async {
+    dynamic response = await ObjectRepositories()
+        .getExternalObject(object: object, param: param);
+    return response;
+  }
 }

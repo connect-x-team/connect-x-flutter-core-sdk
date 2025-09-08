@@ -105,4 +105,14 @@ class ObjectRepositories {
       return e.toString();
     }
   }
+
+  getExternalObject({required String object, required String param}) async {
+    try {
+      Response response =
+          await objectProvider.getExternalObject(object: object, param: param);
+      return response;
+    } catch (e) {
+      return e.toString();
+    }
+  }
 }

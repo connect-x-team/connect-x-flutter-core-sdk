@@ -1,4 +1,4 @@
-## 0.0.12
+## 0.0.13
 
-- fix issue save localStorageProfile
+- add function get external object
 

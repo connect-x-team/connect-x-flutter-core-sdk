@@ -79,4 +79,11 @@ class ObjectProvider {
     );
     return response;
   }
+
+  getExternalObject({required String object, required String param}) async {
+    Uri url = Uri.parse(
+        "${AppConfig.url}/connectx/api/external/object/$object?$param");
+    dynamic response = await httpService.get(url: url);
+    return response;
+  }
 }
