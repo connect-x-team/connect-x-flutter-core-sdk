@@ -87,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     password: 'P@ssw0rd',
                     orgId: '',
                   );
-                  users = res;
+                  users = json.decode(res.body);
                   log('$users');
                 },
                 child: Container(
@@ -128,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   dynamic body = {
                     "userId": users['userId'],
                     "sessionId": sessionID,
-                    "otpCode": "135238"
+                    "otpCode": "708534"
                   };
                   dynamic res = await ConnectXMobileSDK().verifyOTP(body: body);
                   print(res.statusCode);
@@ -144,14 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
               InkWell(
                 onTap: () async {
                   dynamic res = await ConnectXMobileSDK()
-                      .getObjectRecord(object: 'customers', payload: {
-                    "filterId": "pISE8Y4Eo9P3EEo0CAWU",
-                    "offset": 0,
-                    "limit": 25,
-                    "order": {"id": "lastModified", "desc": true},
-                    "q": "Mobile SDKTEST",
-                    "where": "",
-                  });
+                      .getObjectRecord(object: 'lead', payload: {});
                   print(res.statusCode);
                 },
                 child: Container(
@@ -165,12 +158,8 @@ class _MyHomePageState extends State<MyHomePage> {
               InkWell(
                 onTap: () async {
                   dynamic res = await ConnectXMobileSDK().countObjectRecord(
-                    object: 'customers',
-                    payload: {
-                      'filterId': "pISE8Y4Eo9P3EEo0CAWU",
-                      "q": "Mobile SDKTEST",
-                      "where": "",
-                    },
+                    object: 'lead',
+                    payload: {},
                   );
                   print(res);
                 },

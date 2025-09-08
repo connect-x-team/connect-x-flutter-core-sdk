@@ -57,6 +57,10 @@ class LoginRepositories {
         orgId: orgId,
         sessionId: sessionId,
       );
+      if (response.statusCode == 201) {
+        await CoreServiceStorage()
+            .setItem(key: AppConfig.loginStorage, value: response.body);
+      }
       return response;
     } catch (e) {
       return e.toString();
