@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobile_test_package/navigator.dart';
@@ -10,11 +11,11 @@ class CoreServicePhoto {
 
   pickImageGallery(context) async {
     try {
-      final picker = await pickerImage.pickImage(source: ImageSource.gallery);
-      if (picker != null) {
-        var file = File(picker.path).lengthSync();
-
-        return picker.path;
+      final result = await FilePicker.platform.pickFiles(type: FileType.image);
+      // final picker = await pickerImage.pickImage(source: ImageSource.gallery);
+      if (result != null) {
+        var file = result.files.first;
+        return file;
       }
     } catch (e) {
       log(e.toString());

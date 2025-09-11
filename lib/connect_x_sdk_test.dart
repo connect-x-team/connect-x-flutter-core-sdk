@@ -3,6 +3,7 @@ library connect_x_sdk_test;
 import 'package:connect_x_sdk_test/src/repositories/login/_login_repositories.dart';
 import 'package:connect_x_sdk_test/src/repositories/object/_object_repositories.dart';
 import 'package:connect_x_sdk_test/src/repositories/upload/_upload_image_repositories.dart';
+import 'package:file_picker/file_picker.dart';
 
 class ConnectXMobileSDK {
   login(
@@ -137,6 +138,12 @@ class ConnectXMobileSDK {
   getExternalObject({required String object, required String param}) async {
     dynamic response = await ObjectRepositories()
         .getExternalObject(object: object, param: param);
+    return response;
+  }
+
+  uploadFile({required PlatformFile file, required String object}) {
+    dynamic response =
+        UploadImageRepository().uploadFile(object: object, file: file);
     return response;
   }
 }

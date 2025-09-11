@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:connect_x_sdk_test/connect_x_sdk_test.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_test_package/navigator.dart';
 import 'package:mobile_test_package/photo.dart';
@@ -38,11 +39,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   dynamic value;
+  List<PlatformFile> files = [];
   List upload = [
-    {'name': 'Foward Facing Arms At Side', 'image': null},
-    {'name': 'Foward Facing Arms Above The Head', 'image': null},
-    {'name': 'Foward Facing Arms At Side', 'image': null},
-    {'name': 'Foward Facing Arms At Side', 'image': null},
+    {'name': 'Foward Facing Arms At Side', 'image': null, "file": null},
+    {'name': 'Foward Facing Arms Above The Head', 'image': null, "file": null},
+    {'name': 'Foward Facing Arms At Side', 'image': null, "file": null},
+    {'name': 'Foward Facing Arms At Side', 'image': null, "file": null},
   ];
   dynamic payload = {};
 
@@ -128,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   dynamic body = {
                     "userId": users['userId'],
                     "sessionId": sessionID,
-                    "otpCode": "708534"
+                    "otpCode": "144505"
                   };
                   dynamic res = await ConnectXMobileSDK().verifyOTP(body: body);
                   print(res.statusCode);
@@ -277,8 +279,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 child: CoreServicePhoto().selectType(
                                   context: context,
                                   onSelect: (image) {
-                                    item['image'] = image;
-                                    pathToBase64(item['image']);
+                                    item['image'] = image.path;
+                                    files.add(image);
                                     setState(() {});
                                   },
                                 ),
@@ -291,9 +293,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ] else ...[
                           Image.file(
-                            File(
-                              item['image'],
-                            ),
+                            File(item['image']),
                             width: 100,
                             height: 100,
                             fit: BoxFit.cover,
@@ -303,6 +303,22 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     );
                   },
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              InkWell(
+                onTap: () async {
+                  for (var file in files) {
+                    dynamic res = await ConnectXMobileSDK()
+                        .uploadFile(file: file, object: "notes");
+                    log(res);
+                  }
+                },
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  child: Text('uploadfile'),
                 ),
               ),
             ],
