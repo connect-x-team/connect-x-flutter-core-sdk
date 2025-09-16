@@ -1,4 +1,4 @@
-## 0.0.14
+## 0.0.15
 
-- fix uploadfile function
+- add search object function
 

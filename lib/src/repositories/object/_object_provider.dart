@@ -86,4 +86,15 @@ class ObjectProvider {
     dynamic response = await httpService.get(url: url);
     return response;
   }
+
+  searchObject({
+    required dynamic payload,
+  }) async {
+    Uri url = Uri.parse("${AppConfig.url}/connectx/api/object/searchObject");
+    dynamic response = await httpService.post(
+      url: url,
+      body: json.encode(payload),
+    );
+    return response;
+  }
 }

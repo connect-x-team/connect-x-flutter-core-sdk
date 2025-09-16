@@ -115,4 +115,13 @@ class ObjectRepositories {
       return e.toString();
     }
   }
+
+  searchObject({required dynamic payload}) async {
+    try {
+      Response response = await objectProvider.searchObject(payload: payload);
+      return response;
+    } catch (e) {
+      return e.toString();
+    }
+  }
 }

@@ -146,4 +146,10 @@ class ConnectXMobileSDK {
         UploadImageRepository().uploadFile(object: object, file: file);
     return response;
   }
+
+  searchObject({required dynamic payload}) async {
+    dynamic response =
+        await ObjectRepositories().searchObject(payload: payload);
+    return response;
+  }
 }
