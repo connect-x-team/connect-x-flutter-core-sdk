@@ -97,4 +97,14 @@ class ObjectProvider {
     );
     return response;
   }
+
+  getRecordById({required String object, required String docId}) async {
+    Uri url = Uri.parse(
+      "${AppConfig.url}/connectx/api/object/$object/getRecords/$docId",
+    );
+    dynamic response = await httpService.get(
+      url: url,
+    );
+    return response;
+  }
 }

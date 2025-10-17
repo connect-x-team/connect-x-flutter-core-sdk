@@ -124,4 +124,16 @@ class ObjectRepositories {
       return e.toString();
     }
   }
+
+  getRecordById({required String object, required String docId}) async {
+    try {
+      Response response = await objectProvider.getRecordById(
+        object: object,
+        docId: docId,
+      );
+      return response;
+    } catch (e) {
+      return e.toString();
+    }
+  }
 }

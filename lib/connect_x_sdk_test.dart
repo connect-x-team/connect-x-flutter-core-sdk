@@ -152,4 +152,15 @@ class ConnectXMobileSDK {
         await ObjectRepositories().searchObject(payload: payload);
     return response;
   }
+
+  getRecordById({
+    required String object,
+    required dynamic docId,
+  }) async {
+    dynamic response = await ObjectRepositories().getRecordById(
+      object: object,
+      docId: docId,
+    );
+    return response;
+  }
 }

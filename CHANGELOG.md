@@ -1,4 +1,4 @@
-## 0.0.15
+## 0.0.16
 
-- add search object function
+- add get record by id
 
