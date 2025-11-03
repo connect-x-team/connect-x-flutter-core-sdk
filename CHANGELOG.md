@@ -1,4 +1,6 @@
-## 0.0.16
+## 0.0.17
 
-- add get record by id
+- add inviteUser
+- add activeUserByOTP
+- createPassword
 
