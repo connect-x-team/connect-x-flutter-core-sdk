@@ -85,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
               InkWell(
                 onTap: () async {
                   dynamic res = await ConnectXMobileSDK().loginExternalProfile(
-                    username: 'ppsi.external2',
+                    username: 'conx.ppsi@gmail.com',
                     password: 'P@ssw0rd',
                     orgId: '',
                   );
@@ -104,8 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTap: () async {
                   dynamic body = {
                     "userId": users['userId'],
-                    "mode": "sms",
-                    // "mobile": users['mobile'],
+                    "mode": "email",
                     "loginExternalProfile": "true",
                     "stayLogin": "true",
                     "sessionId": users['sessionId'],
@@ -130,10 +129,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   dynamic body = {
                     "userId": users['userId'],
                     "sessionId": sessionID,
-                    "otpCode": "144505"
+                    "otpCode": "941154"
                   };
                   dynamic res = await ConnectXMobileSDK().verifyOTP(body: body);
-                  print(res.statusCode);
                 },
                 child: Container(
                   padding: EdgeInsets.all(16),
@@ -256,53 +254,45 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('Logout'),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 24, right: 24),
-                child: GridView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    crossAxisSpacing: 50,
-                    childAspectRatio: 0.6,
-                    maxCrossAxisExtent: 200,
-                  ),
-                  itemCount: upload.length,
-                  itemBuilder: (context, index) {
-                    var item = upload[index];
-                    return Column(
-                      children: [
-                        if (item['image'] == null) ...[
-                          InkWell(
-                            onTap: () {
-                              CoreServiceNavigator().bottomSheet(
-                                context: context,
-                                child: CoreServicePhoto().selectType(
-                                  context: context,
-                                  onSelect: (image) {
-                                    item['image'] = image.path;
-                                    files.add(image);
-                                    setState(() {});
-                                  },
-                                ),
-                              );
-                            },
-                            child: Icon(
-                              Icons.add_outlined,
-                              size: 80,
-                            ),
-                          ),
-                        ] else ...[
-                          Image.file(
-                            File(item['image']),
-                            width: 100,
-                            height: 100,
-                            fit: BoxFit.cover,
-                          ),
-                          Text(item['name']),
-                        ]
-                      ],
-                    );
-                  },
+              SizedBox(
+                height: 16,
+              ),
+              InkWell(
+                onTap: () async {
+                  dynamic body = {
+                    "username": "ppsiconx58@gmail.com",
+                    "email": "ppsiconx58@gmail.com",
+                    "firstName": "ppsiMobile58",
+                    "lastName": "Conx",
+                    "title": "",
+                    "profileName": "admin",
+                    "parent": "admin",
+                    "city": "",
+                    "country": "",
+                    "zipcode": "",
+                    "mobile": "0859756666",
+                    "capacity": 0,
+                    "emailNotifications": false,
+                    "inAppSoundNotifications": false,
+                    "inAppWebPushNotifications": false,
+                    "autoOffline": false,
+                    "language": {"label": "English", "value": "en"},
+                    "timezone": 7,
+                    "personalNotifications": false,
+                    "genesys": {},
+                    "googleId": "",
+                    "googleAccount": "",
+                    "cx_enableSmsOtp": true,
+                    "cx_enableEmailOtp": true
+                  };
+                  dynamic res = await ConnectXMobileSDK().inviteUser(
+                      body: body,
+                      param: "?isRequestOTP=true&isSendEmail=false");
+                  users = json.decode(res.body);
+                },
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  child: Text('Create invite user'),
                 ),
               ),
               SizedBox(
@@ -310,15 +300,20 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               InkWell(
                 onTap: () async {
-                  for (var file in files) {
-                    dynamic res = await ConnectXMobileSDK()
-                        .uploadFile(file: file, object: "notes");
-                    log(res);
-                  }
+                  dynamic body = {
+                    "sessionId": users['sessionId'],
+                    "refCode": users['refCode'],
+                    "otpCode": "750786"
+                  };
+                  dynamic res = await ConnectXMobileSDK().activeAccountByOTP(
+                    body: body,
+                  );
+                  users = json.decode(res.body);
+                  log(users);
                 },
                 child: Container(
                   padding: EdgeInsets.all(16),
-                  child: Text('uploadfile'),
+                  child: Text('Active user'),
                 ),
               ),
             ],

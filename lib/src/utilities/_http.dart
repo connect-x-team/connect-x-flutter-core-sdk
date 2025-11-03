@@ -67,10 +67,10 @@ class HttpService {
       }
       return {
         "Authorization": "Bearer $token",
-        "Content-Type": "application/json; charset=utf-8",
+        "Content-Type": "	application/json; charset=utf-8",
       };
     } catch (e) {
-      ////
+      print(e.toString());
     }
   }
 }

@@ -117,4 +117,32 @@ class LoginRepositories {
       return e.toString();
     }
   }
+
+  inviteUser({required dynamic body, dynamic param}) async {
+    try {
+      dynamic response =
+          await loginProvider.inviteUser(body: body, param: param ?? "");
+      return response;
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
+  activeAccountByOTP({required dynamic body}) async {
+    try {
+      dynamic response = await loginProvider.activeAccountByOTP(body: body);
+      return response;
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
+  createPassword({required dynamic body}) async {
+    try {
+      dynamic response = await loginProvider.createPassword(body: body);
+      return response;
+    } catch (e) {
+      return e.toString();
+    }
+  }
 }

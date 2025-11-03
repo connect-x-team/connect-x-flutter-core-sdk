@@ -163,4 +163,20 @@ class ConnectXMobileSDK {
     );
     return response;
   }
+
+  inviteUser({required dynamic body, dynamic param}) async {
+    dynamic response =
+        await LoginRepositories().inviteUser(body: body, param: param ?? "");
+    return response;
+  }
+
+  activeAccountByOTP({required dynamic body}) async {
+    dynamic response = await LoginRepositories().activeAccountByOTP(body: body);
+    return response;
+  }
+
+  createPassword({required dynamic body}) async {
+    dynamic response = await LoginRepositories().createPassword(body: body);
+    return response;
+  }
 }

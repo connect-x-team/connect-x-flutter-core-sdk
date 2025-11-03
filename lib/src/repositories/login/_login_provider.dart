@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:connect_x_sdk_test/src/utilities/_app_config.dart';
 import 'package:connect_x_sdk_test/src/utilities/_http.dart';
 
@@ -70,6 +72,29 @@ class LoginProvider {
   verifyOTP({required dynamic body}) async {
     Uri url = Uri.parse("${AppConfig.url}/connectx/api/auth/verifyOTP");
     dynamic response = await httpService.post(url: url, body: body, header: {});
+    return response;
+  }
+
+  inviteUser({required dynamic body, dynamic param}) async {
+    Uri url = Uri.parse(
+        "${AppConfig.url}/connectx/api/auth/inviteUser${param ?? ""}");
+    dynamic response =
+        await httpService.post(url: url, body: json.encode(body));
+    return response;
+  }
+
+  activeAccountByOTP({required dynamic body}) async {
+    Uri url =
+        Uri.parse("${AppConfig.url}/connectx/api/auth/activeAccountByOTP");
+    dynamic response =
+        await httpService.post(url: url, body: json.encode(body));
+    return response;
+  }
+
+  createPassword({required dynamic body}) async {
+    Uri url = Uri.parse("${AppConfig.url}/connectx/api/auth/createPassword");
+    dynamic response =
+        await httpService.post(url: url, body: json.encode(body));
     return response;
   }
 }
