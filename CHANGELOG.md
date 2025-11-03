@@ -1,6 +1,4 @@
-## 0.0.17
+## 0.0.18
 
-- add inviteUser
-- add activeUserByOTP
-- createPassword
+- add searchKnowledge
 

@@ -179,4 +179,10 @@ class ConnectXMobileSDK {
     dynamic response = await LoginRepositories().createPassword(body: body);
     return response;
   }
+
+  searchKnowledge({required dynamic payload}) async {
+    dynamic response =
+        await ObjectRepositories().searchKnowledge(payload: payload);
+    return response;
+  }
 }

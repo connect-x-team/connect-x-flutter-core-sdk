@@ -136,4 +136,14 @@ class ObjectRepositories {
       return e.toString();
     }
   }
+
+  searchKnowledge({required dynamic payload}) async {
+    try {
+      Response response =
+          await objectProvider.searchKnowledge(payload: payload);
+      return response;
+    } catch (e) {
+      return e.toString();
+    }
+  }
 }

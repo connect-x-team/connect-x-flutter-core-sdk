@@ -107,4 +107,14 @@ class ObjectProvider {
     );
     return response;
   }
+
+  searchKnowledge({required dynamic payload}) async {
+    Uri url =
+        Uri.parse("${AppConfig.url}/connectx/api/knowledge/searchKnowledge");
+    dynamic response = await httpService.post(
+      url: url,
+      body: json.encode(payload),
+    );
+    return response;
+  }
 }
