@@ -25,6 +25,7 @@ class LoginProvider {
     required String password,
     required String orgId,
     String? sessionId,
+    String? fcmToken,
   }) async {
     Uri url =
         Uri.parse("${AppConfig.url}/connectx/api/auth/loginExternalProfile/");
@@ -33,6 +34,7 @@ class LoginProvider {
       'password': password,
       'stayLogin': "true",
       'sessionId': sessionId ?? "",
+      "fcmToken": fcmToken ?? ""
     };
     dynamic response = await httpService.post(url: url, body: body, header: {});
     return response;

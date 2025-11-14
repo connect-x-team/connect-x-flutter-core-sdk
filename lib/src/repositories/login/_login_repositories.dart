@@ -41,6 +41,7 @@ class LoginRepositories {
     required String password,
     required String orgId,
     String? sessionId,
+    String? fcmToken,
   }) async {
     try {
       String message =
@@ -56,6 +57,7 @@ class LoginRepositories {
         password: digest.toString(),
         orgId: orgId,
         sessionId: sessionId,
+        fcmToken: fcmToken,
       );
       if (response.statusCode == 201) {
         await CoreServiceStorage()

@@ -23,13 +23,14 @@ class ConnectXMobileSDK {
     required String password,
     required String orgId,
     String? sessionId,
+    String? fcmToken,
   }) async {
     dynamic response = await LoginRepositories().loginExternalProfile(
-      username: username,
-      password: password,
-      orgId: orgId,
-      sessionId: sessionId,
-    );
+        username: username,
+        password: password,
+        orgId: orgId,
+        sessionId: sessionId,
+        fcmToken: fcmToken);
     return response;
   }
 

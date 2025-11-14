@@ -1,4 +1,4 @@
-## 0.0.18
+## 0.0.19
 
-- add searchKnowledge
+- add fcmToken
 
