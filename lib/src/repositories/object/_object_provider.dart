@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:connect_x_sdk_test/src/utilities/_app_config.dart';
-import 'package:connect_x_sdk_test/src/utilities/_http.dart';
+import 'package:connect_x_sdk/src/utilities/_app_config.dart';
+import 'package:connect_x_sdk/src/utilities/_http.dart';
 
 HttpService httpService = HttpService();
 

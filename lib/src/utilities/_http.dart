@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:connect_x_sdk_test/src/utilities/_app_config.dart';
-import 'package:connect_x_sdk_test/src/utilities/_storage.dart';
+import 'package:connect_x_sdk/src/utilities/_app_config.dart';
+import 'package:connect_x_sdk/src/utilities/_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';

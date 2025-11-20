@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:connect_x_sdk_test/src/repositories/login/_login_provider.dart';
-import 'package:connect_x_sdk_test/src/utilities/_app_config.dart';
-import 'package:connect_x_sdk_test/src/utilities/_storage.dart';
+import 'package:connect_x_sdk/src/repositories/login/_login_provider.dart';
+import 'package:connect_x_sdk/src/utilities/_app_config.dart';
+import 'package:connect_x_sdk/src/utilities/_storage.dart';
 import 'package:crypto/crypto.dart';
 import 'package:http/http.dart';
 
@@ -98,18 +98,20 @@ class LoginRepositories {
     }
   }
 
-  sendOTP({required dynamic body}) async {
+  sendOTP({required dynamic body, dynamic header}) async {
     try {
-      dynamic response = await loginProvider.sendOTP(body: body);
+      dynamic response =
+          await loginProvider.sendOTP(body: body, header: header);
       return response;
     } catch (e) {
       return e.toString();
     }
   }
 
-  verifyOTP({required dynamic body}) async {
+  verifyOTP({required dynamic body, dynamic header}) async {
     try {
-      dynamic response = await loginProvider.verifyOTP(body: body);
+      dynamic response =
+          await loginProvider.verifyOTP(body: body, header: header);
       if (response.statusCode == 201) {
         await CoreServiceStorage()
             .setItem(key: AppConfig.loginStorage, value: response.body);
@@ -120,28 +122,30 @@ class LoginRepositories {
     }
   }
 
-  inviteUser({required dynamic body, dynamic param}) async {
+  inviteUser({required dynamic body, dynamic param, dynamic header}) async {
+    try {
+      dynamic response = await loginProvider.inviteUser(
+          body: body, param: param ?? "", header: header);
+      return response;
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
+  activeAccountByOTP({required dynamic body, dynamic header}) async {
     try {
       dynamic response =
-          await loginProvider.inviteUser(body: body, param: param ?? "");
+          await loginProvider.activeAccountByOTP(body: body, header: header);
       return response;
     } catch (e) {
       return e.toString();
     }
   }
 
-  activeAccountByOTP({required dynamic body}) async {
+  createPassword({required dynamic body, dynamic header}) async {
     try {
-      dynamic response = await loginProvider.activeAccountByOTP(body: body);
-      return response;
-    } catch (e) {
-      return e.toString();
-    }
-  }
-
-  createPassword({required dynamic body}) async {
-    try {
-      dynamic response = await loginProvider.createPassword(body: body);
+      dynamic response =
+          await loginProvider.createPassword(body: body, header: header);
       return response;
     } catch (e) {
       return e.toString();

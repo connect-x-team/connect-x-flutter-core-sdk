@@ -88,6 +88,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     username: 'conx.ppsi@gmail.com',
                     password: 'P@ssw0rd',
                     orgId: '',
+                    fcmToken:
+                        'cHfC1Nn0QE0EvtJwi3C3Qz:APA91bH8VeB5h0Vsv5EeNMTeTbq6rgdKiSvI5w-bYLQuB5_KvSyJjmoFhHieebo1THpMCF2Wvn_1ILb4OZgaZo12PxDioW17vjCS04lSmao_LmatKCSa5iE',
                   );
                   users = json.decode(res.body);
                   log('$users');

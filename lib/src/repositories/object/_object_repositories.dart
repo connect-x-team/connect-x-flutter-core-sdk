@@ -1,5 +1,5 @@
-import 'package:connect_x_sdk_test/src/repositories/object/_object_provider.dart';
-import 'package:connect_x_sdk_test/src/repositories/upload/_upload_image_repositories.dart';
+import 'package:connect_x_sdk/src/repositories/object/_object_provider.dart';
+import 'package:connect_x_sdk/src/repositories/upload/_upload_image_repositories.dart';
 import 'package:http/http.dart';
 
 class ObjectRepositories {

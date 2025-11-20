@@ -1,8 +1,8 @@
 library connect_x_sdk_test;
 
-import 'package:connect_x_sdk_test/src/repositories/login/_login_repositories.dart';
-import 'package:connect_x_sdk_test/src/repositories/object/_object_repositories.dart';
-import 'package:connect_x_sdk_test/src/repositories/upload/_upload_image_repositories.dart';
+import 'package:connect_x_sdk/src/repositories/login/_login_repositories.dart';
+import 'package:connect_x_sdk/src/repositories/object/_object_repositories.dart';
+import 'package:connect_x_sdk/src/repositories/upload/_upload_image_repositories.dart';
 import 'package:file_picker/file_picker.dart';
 
 class ConnectXMobileSDK {
@@ -95,7 +95,9 @@ class ConnectXMobileSDK {
     return response;
   }
 
-  forgotPassword({required String username}) async {
+  forgotPassword({
+    required String username,
+  }) async {
     dynamic response =
         await LoginRepositories().forgotPassword(username: username);
     return response;
@@ -126,13 +128,21 @@ class ConnectXMobileSDK {
     return response;
   }
 
-  sendOTP({required dynamic body}) async {
-    dynamic response = await LoginRepositories().sendOTP(body: body);
+  sendOTP({
+    required dynamic body,
+    dynamic header,
+  }) async {
+    dynamic response =
+        await LoginRepositories().sendOTP(body: body, header: header);
     return response;
   }
 
-  verifyOTP({required dynamic body}) async {
-    dynamic response = await LoginRepositories().verifyOTP(body: body);
+  verifyOTP({
+    required dynamic body,
+    dynamic header,
+  }) async {
+    dynamic response =
+        await LoginRepositories().verifyOTP(body: body, header: header);
     return response;
   }
 
@@ -165,19 +175,31 @@ class ConnectXMobileSDK {
     return response;
   }
 
-  inviteUser({required dynamic body, dynamic param}) async {
+  inviteUser({
+    required dynamic body,
+    dynamic param,
+    dynamic header,
+  }) async {
+    dynamic response = await LoginRepositories()
+        .inviteUser(body: body, param: param ?? "", header: header);
+    return response;
+  }
+
+  activeAccountByOTP({
+    required dynamic body,
+    dynamic header,
+  }) async {
+    dynamic response = await LoginRepositories()
+        .activeAccountByOTP(body: body, header: header);
+    return response;
+  }
+
+  createPassword({
+    required dynamic body,
+    dynamic header,
+  }) async {
     dynamic response =
-        await LoginRepositories().inviteUser(body: body, param: param ?? "");
-    return response;
-  }
-
-  activeAccountByOTP({required dynamic body}) async {
-    dynamic response = await LoginRepositories().activeAccountByOTP(body: body);
-    return response;
-  }
-
-  createPassword({required dynamic body}) async {
-    dynamic response = await LoginRepositories().createPassword(body: body);
+        await LoginRepositories().createPassword(body: body, header: header);
     return response;
   }
 

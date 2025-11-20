@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:connect_x_sdk_test/src/repositories/upload/_upload_image_provider.dart';
-import 'package:connect_x_sdk_test/src/utilities/_app_config.dart';
-import 'package:connect_x_sdk_test/src/utilities/_storage.dart';
+import 'package:connect_x_sdk/src/repositories/upload/_upload_image_provider.dart';
+import 'package:connect_x_sdk/src/utilities/_app_config.dart';
+import 'package:connect_x_sdk/src/utilities/_storage.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:mime/mime.dart';

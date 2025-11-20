@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:connect_x_sdk_test/src/utilities/_app_config.dart';
-import 'package:connect_x_sdk_test/src/utilities/_http.dart';
+import 'package:connect_x_sdk/src/utilities/_app_config.dart';
+import 'package:connect_x_sdk/src/utilities/_http.dart';
 
 HttpService httpService = HttpService();
 
@@ -65,38 +65,40 @@ class LoginProvider {
     return response;
   }
 
-  sendOTP({required dynamic body}) async {
+  sendOTP({required dynamic body, dynamic header}) async {
     Uri url = Uri.parse("${AppConfig.url}/connectx/api/auth/sendOTP");
-    dynamic response = await httpService.post(url: url, body: body, header: {});
+    dynamic response =
+        await httpService.post(url: url, body: body, header: header);
     return response;
   }
 
-  verifyOTP({required dynamic body}) async {
+  verifyOTP({required dynamic body, dynamic header}) async {
     Uri url = Uri.parse("${AppConfig.url}/connectx/api/auth/verifyOTP");
-    dynamic response = await httpService.post(url: url, body: body, header: {});
+    dynamic response =
+        await httpService.post(url: url, body: body, header: header);
     return response;
   }
 
-  inviteUser({required dynamic body, dynamic param}) async {
+  inviteUser({required dynamic body, dynamic param, dynamic header}) async {
     Uri url = Uri.parse(
         "${AppConfig.url}/connectx/api/auth/inviteUser${param ?? ""}");
-    dynamic response =
-        await httpService.post(url: url, body: json.encode(body));
+    dynamic response = await httpService.post(
+        url: url, body: json.encode(body), header: header);
     return response;
   }
 
-  activeAccountByOTP({required dynamic body}) async {
+  activeAccountByOTP({required dynamic body, dynamic header}) async {
     Uri url =
         Uri.parse("${AppConfig.url}/connectx/api/auth/activeAccountByOTP");
-    dynamic response =
-        await httpService.post(url: url, body: json.encode(body));
+    dynamic response = await httpService.post(
+        url: url, body: json.encode(body), header: header);
     return response;
   }
 
-  createPassword({required dynamic body}) async {
+  createPassword({required dynamic body, dynamic header}) async {
     Uri url = Uri.parse("${AppConfig.url}/connectx/api/auth/createPassword");
-    dynamic response =
-        await httpService.post(url: url, body: json.encode(body));
+    dynamic response = await httpService.post(
+        url: url, body: json.encode(body), header: header);
     return response;
   }
 }
