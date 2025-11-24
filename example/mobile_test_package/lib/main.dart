@@ -2,11 +2,9 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:connect_x_sdk_test/connect_x_sdk_test.dart';
+import 'package:connect_x_sdk/connect_x_sdk_test.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_test_package/navigator.dart';
-import 'package:mobile_test_package/photo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -48,6 +46,11 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
   dynamic payload = {};
 
+  dynamic header = {
+    "Authorization":
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBwc2kuc3RhZ2luZzJAY29ubmVjdC14LnRlY2giLCJlbWFpbCI6InBwc2kuc3RhZ2luZzJAY29ubmVjdC14LnRlY2giLCJ1c2VySWQiOiI3Y1pLV3l4NHNZeTZqeFQ1ZjhhVyIsInN1YiI6IjdjWktXeXg0c1l5Nmp4VDVmOGFXIiwib3JnYW5pemVJZCI6IjFRMEFlTnI0VDlJQXM5RWN4WG9zIiwic3RheUxvZ2luIjp0cnVlLCJjdXN0b21Ub2tlbiI6ImV5SmhiR2NpT2lKU1V6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUpoZFdRaU9pSm9kSFJ3Y3pvdkwybGtaVzUwYVhSNWRHOXZiR3RwZEM1bmIyOW5iR1ZoY0dsekxtTnZiUzluYjI5bmJHVXVhV1JsYm5ScGRIa3VhV1JsYm5ScGRIbDBiMjlzYTJsMExuWXhMa2xrWlc1MGFYUjVWRzl2Ykd0cGRDSXNJbWxoZENJNk1UYzJNelV6T1RRMk55d2laWGh3SWpveE56WXpOVFF6TURZM0xDSnBjM01pT2lKbWFYSmxZbUZ6WlMxaFpHMXBibk5rYXkxblp6TTRNa0JqYjI1dVpXTjBMWGd0Y0hKdlpIVmpkR2x2Ymk1cFlXMHVaM05sY25acFkyVmhZMk52ZFc1MExtTnZiU0lzSW5OMVlpSTZJbVpwY21WaVlYTmxMV0ZrYldsdWMyUnJMV2RuTXpneVFHTnZibTVsWTNRdGVDMXdjbTlrZFdOMGFXOXVMbWxoYlM1bmMyVnlkbWxqWldGalkyOTFiblF1WTI5dElpd2lkV2xrSWpvaWNIQnphUzV6ZEdGbmFXNW5Na0JqYjI1dVpXTjBMWGd1ZEdWamFDSXNJbU5zWVdsdGN5STZleUp2Y21kSlpDSTZJakZSTUVGbFRuSTBWRGxKUVhNNVJXTjRXRzl6SW4xOS5JQTVNakc1T3JsbTd4cEJVcldHMXdfUGxTQXJXNkJGVmhra0pGVnhjc0JoMDY4NlVjY0praUFnRGJRS1h2cUhsUVhpaUZpU1VVS2FfVTNUZ0dQWGEtQWROdE42UXFsZlJtUklMV0FERUNHR29mbU0tMFNnSnRibU9NcS03a3p0V2RFcjllQ3F0dU5sVHVlZS12YkpBQ01PR1F3a1VfbXY5QVY0Z0NHN1VLdWlCd2ZiQkpIZ28wSUV3d3NwM19qS3ZqSkJpQkFiaF9MbDlJNXE4S0M2cFNoVE1Id2ZHVTlCNVFuSHdPUjVpdGRNOUxRTlNWWXltZmVManlETGdhdXVOYTlEUXlwaVdHeVJDYy1Kb2tYczJldk1yRGlSeDZRNnktZk56dXVCLWUxaHhmU1ZEeDMyaHREb3p0MmRFSzNWYm9XT3QzSEUwX2JvbjJBN1ZSQlJmaVEiLCJpbWFnZSI6IiIsImRpc3BsYXlOYW1lIjoiU3VwZXIgQWRtaW4iLCJpYXQiOjE3NjM1Mzk0NjcsImV4cCI6MzE3MzA3OTgxODY3fQ.YEgyAFHcgR9msj5fNzFnBPobE0QdUgs435UxjkcYVnU",
+    "Content-Type": "	application/json; charset=utf-8",
+  };
   dynamic users;
   String sessionID = '';
 
@@ -85,11 +88,9 @@ class _MyHomePageState extends State<MyHomePage> {
               InkWell(
                 onTap: () async {
                   dynamic res = await ConnectXMobileSDK().loginExternalProfile(
-                    username: 'conx.ppsi@gmail.com',
-                    password: 'P@ssw0rd',
+                    username: "ppsiconx111@gmail.com",
+                    password: "Paplam@89",
                     orgId: '',
-                    fcmToken:
-                        'cHfC1Nn0QE0EvtJwi3C3Qz:APA91bH8VeB5h0Vsv5EeNMTeTbq6rgdKiSvI5w-bYLQuB5_KvSyJjmoFhHieebo1THpMCF2Wvn_1ILb4OZgaZo12PxDioW17vjCS04lSmao_LmatKCSa5iE',
                   );
                   users = json.decode(res.body);
                   log('$users');
@@ -111,7 +112,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     "stayLogin": "true",
                     "sessionId": users['sessionId'],
                   };
-                  dynamic res = await ConnectXMobileSDK().sendOTP(body: body);
+                  dynamic res =
+                      await ConnectXMobileSDK().sendLoginOTP(body: body);
                   dynamic data = json.decode(res.body);
                   sessionID = data['sessionId'];
                 },
@@ -133,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     "sessionId": sessionID,
                     "otpCode": "941154"
                   };
-                  dynamic res = await ConnectXMobileSDK().verifyOTP(body: body);
+                  await ConnectXMobileSDK().verifyLoginOTP(body: body);
                 },
                 child: Container(
                   padding: EdgeInsets.all(16),
@@ -262,13 +264,13 @@ class _MyHomePageState extends State<MyHomePage> {
               InkWell(
                 onTap: () async {
                   dynamic body = {
-                    "username": "ppsiconx58@gmail.com",
-                    "email": "ppsiconx58@gmail.com",
-                    "firstName": "ppsiMobile58",
-                    "lastName": "Conx",
+                    "username": "ppsiconx111@gmail.com",
+                    "email": "ppsiconx111@gmail.com",
+                    "firstName": "ppsiMobile111",
+                    "lastName": "Conxtest",
                     "title": "",
-                    "profileName": "admin",
-                    "parent": "admin",
+                    "profileName": "externalUser",
+                    "parent": "externalUser",
                     "city": "",
                     "country": "",
                     "zipcode": "",
@@ -288,13 +290,36 @@ class _MyHomePageState extends State<MyHomePage> {
                     "cx_enableEmailOtp": true
                   };
                   dynamic res = await ConnectXMobileSDK().inviteUser(
-                      body: body,
-                      param: "?isRequestOTP=true&isSendEmail=false");
-                  users = json.decode(res.body);
+                      body: body, param: "?isSendEmail=false", header: header);
+                  print(res);
                 },
                 child: Container(
                   padding: EdgeInsets.all(16),
                   child: Text('Create invite user'),
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              InkWell(
+                onTap: () async {
+                  dynamic body = {
+                    "docId": "tFlerwFGldAsBZ2tPCid",
+                    "password": "Paplam@89",
+                    "organizeId": "1Q0AeNr4T9IAs9EcxXos",
+                    "profileName": "externalUser",
+                    "email": "ppsiconx111@gmail.com"
+                  };
+                  dynamic res = await ConnectXMobileSDK().createPassword(
+                    body: body,
+                    header: header,
+                  );
+                  dynamic ressss = json.decode(res.body);
+                  log('$ressss');
+                },
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  child: Text('create password'),
                 ),
               ),
               SizedBox(
@@ -316,6 +341,46 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Container(
                   padding: EdgeInsets.all(16),
                   child: Text('Active user'),
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              InkWell(
+                onTap: () async {
+                  dynamic body = {
+                    "email": "agency.ppsi@gmail.com",
+                    "name": "test",
+                    "payload": {}
+                  };
+                  dynamic res = await ConnectXMobileSDK()
+                      .generateOTP(body: body, header: header);
+                  res = json.decode(res.body);
+                  print('${res}');
+                },
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  child: Text('generateOTP'),
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              InkWell(
+                onTap: () async {
+                  dynamic body = {
+                    "sessionId": "9aaca163-e0be-4cb7-92b3-c6ab767763f7",
+                    "refCode": "WQMN",
+                    "otpCode": "682656"
+                  };
+                  dynamic res = await ConnectXMobileSDK()
+                      .verifyOTP(body: body, header: header);
+                  res = json.decode(res.body);
+                  print('${res}');
+                },
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  child: Text('verifyOTP'),
                 ),
               ),
             ],

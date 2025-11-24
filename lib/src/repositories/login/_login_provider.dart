@@ -65,14 +65,14 @@ class LoginProvider {
     return response;
   }
 
-  sendOTP({required dynamic body, dynamic header}) async {
+  sendLoginOTP({required dynamic body, dynamic header}) async {
     Uri url = Uri.parse("${AppConfig.url}/connectx/api/auth/sendOTP");
     dynamic response =
         await httpService.post(url: url, body: body, header: header);
     return response;
   }
 
-  verifyOTP({required dynamic body, dynamic header}) async {
+  verifyLoginOTP({required dynamic body, dynamic header}) async {
     Uri url = Uri.parse("${AppConfig.url}/connectx/api/auth/verifyOTP");
     dynamic response =
         await httpService.post(url: url, body: body, header: header);
@@ -97,6 +97,21 @@ class LoginProvider {
 
   createPassword({required dynamic body, dynamic header}) async {
     Uri url = Uri.parse("${AppConfig.url}/connectx/api/auth/createPassword");
+    dynamic response = await httpService.post(
+        url: url, body: json.encode(body), header: header);
+    return response;
+  }
+
+  generateOTP({required dynamic body, dynamic header}) async {
+    Uri url =
+        Uri.parse("${AppConfig.url}/connectx/api/verification/generateOTP");
+    dynamic response = await httpService.post(
+        url: url, body: json.encode(body), header: header);
+    return response;
+  }
+
+  verifyOTP({required dynamic body, dynamic header}) async {
+    Uri url = Uri.parse("${AppConfig.url}/connectx/api/verification/verifyOTP");
     dynamic response = await httpService.post(
         url: url, body: json.encode(body), header: header);
     return response;

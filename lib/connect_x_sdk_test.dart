@@ -128,21 +128,21 @@ class ConnectXMobileSDK {
     return response;
   }
 
-  sendOTP({
+  sendLoginOTP({
     required dynamic body,
     dynamic header,
   }) async {
     dynamic response =
-        await LoginRepositories().sendOTP(body: body, header: header);
+        await LoginRepositories().sendLoginOTP(body: body, header: header);
     return response;
   }
 
-  verifyOTP({
+  verifyLoginOTP({
     required dynamic body,
     dynamic header,
   }) async {
     dynamic response =
-        await LoginRepositories().verifyOTP(body: body, header: header);
+        await LoginRepositories().verifyLoginOTP(body: body, header: header);
     return response;
   }
 
@@ -206,6 +206,24 @@ class ConnectXMobileSDK {
   searchKnowledge({required dynamic payload}) async {
     dynamic response =
         await ObjectRepositories().searchKnowledge(payload: payload);
+    return response;
+  }
+
+  generateOTP({
+    required dynamic body,
+    dynamic header,
+  }) async {
+    dynamic response =
+        await LoginRepositories().generateOTP(body: body, header: header);
+    return response;
+  }
+
+  verifyOTP({
+    required dynamic body,
+    dynamic header,
+  }) async {
+    dynamic response =
+        await LoginRepositories().verifyOTP(body: body, header: header);
     return response;
   }
 }

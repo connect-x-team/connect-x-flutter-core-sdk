@@ -98,20 +98,20 @@ class LoginRepositories {
     }
   }
 
-  sendOTP({required dynamic body, dynamic header}) async {
+  sendLoginOTP({required dynamic body, dynamic header}) async {
     try {
       dynamic response =
-          await loginProvider.sendOTP(body: body, header: header);
+          await loginProvider.sendLoginOTP(body: body, header: header);
       return response;
     } catch (e) {
       return e.toString();
     }
   }
 
-  verifyOTP({required dynamic body, dynamic header}) async {
+  verifyLoginOTP({required dynamic body, dynamic header}) async {
     try {
       dynamic response =
-          await loginProvider.verifyOTP(body: body, header: header);
+          await loginProvider.verifyLoginOTP(body: body, header: header);
       if (response.statusCode == 201) {
         await CoreServiceStorage()
             .setItem(key: AppConfig.loginStorage, value: response.body);
@@ -144,8 +144,38 @@ class LoginRepositories {
 
   createPassword({required dynamic body, dynamic header}) async {
     try {
+      String email = body?['email'];
+      String password = body?['password'];
+      String message =
+          "$password${email.toLowerCase().trim()}${AppConfig.token}";
+      final key = utf8.encode(message);
+      final data = utf8.encode('');
+
+      final hmacSha1 = Hmac(sha1, key);
+      final digest = hmacSha1.convert(data);
+      body?['password'] = digest.toString();
       dynamic response =
           await loginProvider.createPassword(body: body, header: header);
+      return response;
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
+  generateOTP({required dynamic body, dynamic header}) async {
+    try {
+      dynamic response =
+          await loginProvider.generateOTP(body: body, header: header);
+      return response;
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
+  verifyOTP({required dynamic body, dynamic header}) async {
+    try {
+      dynamic response =
+          await loginProvider.verifyOTP(body: body, header: header);
       return response;
     } catch (e) {
       return e.toString();
