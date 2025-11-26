@@ -47,8 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
   dynamic payload = {};
 
   dynamic header = {
-    "Authorization":
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBwc2kuc3RhZ2luZzJAY29ubmVjdC14LnRlY2giLCJlbWFpbCI6InBwc2kuc3RhZ2luZzJAY29ubmVjdC14LnRlY2giLCJ1c2VySWQiOiI3Y1pLV3l4NHNZeTZqeFQ1ZjhhVyIsInN1YiI6IjdjWktXeXg0c1l5Nmp4VDVmOGFXIiwib3JnYW5pemVJZCI6IjFRMEFlTnI0VDlJQXM5RWN4WG9zIiwic3RheUxvZ2luIjp0cnVlLCJjdXN0b21Ub2tlbiI6ImV5SmhiR2NpT2lKU1V6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUpoZFdRaU9pSm9kSFJ3Y3pvdkwybGtaVzUwYVhSNWRHOXZiR3RwZEM1bmIyOW5iR1ZoY0dsekxtTnZiUzluYjI5bmJHVXVhV1JsYm5ScGRIa3VhV1JsYm5ScGRIbDBiMjlzYTJsMExuWXhMa2xrWlc1MGFYUjVWRzl2Ykd0cGRDSXNJbWxoZENJNk1UYzJNelV6T1RRMk55d2laWGh3SWpveE56WXpOVFF6TURZM0xDSnBjM01pT2lKbWFYSmxZbUZ6WlMxaFpHMXBibk5rYXkxblp6TTRNa0JqYjI1dVpXTjBMWGd0Y0hKdlpIVmpkR2x2Ymk1cFlXMHVaM05sY25acFkyVmhZMk52ZFc1MExtTnZiU0lzSW5OMVlpSTZJbVpwY21WaVlYTmxMV0ZrYldsdWMyUnJMV2RuTXpneVFHTnZibTVsWTNRdGVDMXdjbTlrZFdOMGFXOXVMbWxoYlM1bmMyVnlkbWxqWldGalkyOTFiblF1WTI5dElpd2lkV2xrSWpvaWNIQnphUzV6ZEdGbmFXNW5Na0JqYjI1dVpXTjBMWGd1ZEdWamFDSXNJbU5zWVdsdGN5STZleUp2Y21kSlpDSTZJakZSTUVGbFRuSTBWRGxKUVhNNVJXTjRXRzl6SW4xOS5JQTVNakc1T3JsbTd4cEJVcldHMXdfUGxTQXJXNkJGVmhra0pGVnhjc0JoMDY4NlVjY0praUFnRGJRS1h2cUhsUVhpaUZpU1VVS2FfVTNUZ0dQWGEtQWROdE42UXFsZlJtUklMV0FERUNHR29mbU0tMFNnSnRibU9NcS03a3p0V2RFcjllQ3F0dU5sVHVlZS12YkpBQ01PR1F3a1VfbXY5QVY0Z0NHN1VLdWlCd2ZiQkpIZ28wSUV3d3NwM19qS3ZqSkJpQkFiaF9MbDlJNXE4S0M2cFNoVE1Id2ZHVTlCNVFuSHdPUjVpdGRNOUxRTlNWWXltZmVManlETGdhdXVOYTlEUXlwaVdHeVJDYy1Kb2tYczJldk1yRGlSeDZRNnktZk56dXVCLWUxaHhmU1ZEeDMyaHREb3p0MmRFSzNWYm9XT3QzSEUwX2JvbjJBN1ZSQlJmaVEiLCJpbWFnZSI6IiIsImRpc3BsYXlOYW1lIjoiU3VwZXIgQWRtaW4iLCJpYXQiOjE3NjM1Mzk0NjcsImV4cCI6MzE3MzA3OTgxODY3fQ.YEgyAFHcgR9msj5fNzFnBPobE0QdUgs435UxjkcYVnU",
+    "Authorization": "Bearer eyJhbGciOixxxx",
     "Content-Type": "	application/json; charset=utf-8",
   };
   dynamic users;
@@ -88,8 +87,8 @@ class _MyHomePageState extends State<MyHomePage> {
               InkWell(
                 onTap: () async {
                   dynamic res = await ConnectXMobileSDK().loginExternalProfile(
-                    username: "ppsiconx111@gmail.com",
-                    password: "Paplam@89",
+                    username: "",
+                    password: "",
                     orgId: '',
                   );
                   users = json.decode(res.body);
@@ -196,7 +195,7 @@ class _MyHomePageState extends State<MyHomePage> {
               InkWell(
                 onTap: () async {
                   dynamic res = await ConnectXMobileSDK().forgotPassword(
-                    username: "chatchawarn@m-intelligence.tech",
+                    username: "",
                   );
                   print(res);
                 },
@@ -264,8 +263,8 @@ class _MyHomePageState extends State<MyHomePage> {
               InkWell(
                 onTap: () async {
                   dynamic body = {
-                    "username": "ppsiconx111@gmail.com",
-                    "email": "ppsiconx111@gmail.com",
+                    "username": "",
+                    "email": "",
                     "firstName": "ppsiMobile111",
                     "lastName": "Conxtest",
                     "title": "",
@@ -304,11 +303,11 @@ class _MyHomePageState extends State<MyHomePage> {
               InkWell(
                 onTap: () async {
                   dynamic body = {
-                    "docId": "tFlerwFGldAsBZ2tPCid",
-                    "password": "Paplam@89",
-                    "organizeId": "1Q0AeNr4T9IAs9EcxXos",
-                    "profileName": "externalUser",
-                    "email": "ppsiconx111@gmail.com"
+                    "docId": "",
+                    "password": "",
+                    "organizeId": "",
+                    "profileName": "",
+                    "email": ""
                   };
                   dynamic res = await ConnectXMobileSDK().createPassword(
                     body: body,
@@ -348,11 +347,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               InkWell(
                 onTap: () async {
-                  dynamic body = {
-                    "email": "agency.ppsi@gmail.com",
-                    "name": "test",
-                    "payload": {}
-                  };
+                  dynamic body = {"email": "", "name": "", "payload": {}};
                   dynamic res = await ConnectXMobileSDK()
                       .generateOTP(body: body, header: header);
                   res = json.decode(res.body);
@@ -369,7 +364,7 @@ class _MyHomePageState extends State<MyHomePage> {
               InkWell(
                 onTap: () async {
                   dynamic body = {
-                    "sessionId": "9aaca163-e0be-4cb7-92b3-c6ab767763f7",
+                    "sessionId": "",
                     "refCode": "WQMN",
                     "otpCode": "682656"
                   };
