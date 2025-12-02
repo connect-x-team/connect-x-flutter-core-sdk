@@ -79,7 +79,10 @@ class LoginRepositories {
     }
   }
 
-  forgotPassword({required String username}) async {
+  forgotPassword({
+    required String username,
+    dynamic header,
+  }) async {
     try {
       dynamic response = await loginProvider.forgotPassword(username: username);
       return response;

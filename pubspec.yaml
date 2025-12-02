@@ -1,6 +1,6 @@
 name: connect_x_sdk
 description: "ConnectX SDK"
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/connect-x-team/connect-x-flutter-core-sdk.git
 
 environment:

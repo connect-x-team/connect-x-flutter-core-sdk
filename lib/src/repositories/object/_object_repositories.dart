@@ -9,11 +9,13 @@ class ObjectRepositories {
   getRecords({
     required String object,
     required dynamic payload,
+    dynamic header,
   }) async {
     try {
       Response response = await objectProvider.getRecords(
         object: object,
         payload: payload,
+        header: header,
       );
       return response;
     } catch (e) {
@@ -24,11 +26,13 @@ class ObjectRepositories {
   countRecords({
     required String object,
     required dynamic payload,
+    dynamic header,
   }) async {
     try {
       Response response = await objectProvider.countRecords(
         object: object,
         payload: payload,
+        header: header,
       );
       return response;
     } catch (e) {
@@ -39,6 +43,7 @@ class ObjectRepositories {
   createRecord({
     required String object,
     required dynamic payload,
+    dynamic header,
   }) async {
     try {
       dynamic newPayload = await uploadImageRepository.checkPayload(
@@ -48,6 +53,7 @@ class ObjectRepositories {
       Response response = await objectProvider.createRecord(
         object: object,
         payload: newPayload,
+        header: header,
       );
       return response;
     } catch (e) {
@@ -59,6 +65,7 @@ class ObjectRepositories {
     required String object,
     required String externalId,
     required dynamic payload,
+    dynamic header,
   }) async {
     try {
       dynamic newPayload = await uploadImageRepository.checkPayload(
@@ -69,6 +76,7 @@ class ObjectRepositories {
         object: object,
         payload: newPayload,
         externalId: externalId,
+        header: header,
       );
       return response;
     } catch (e) {
@@ -76,9 +84,15 @@ class ObjectRepositories {
     }
   }
 
-  getSchemas({required String object}) async {
+  getSchemas({
+    required String object,
+    dynamic header,
+  }) async {
     try {
-      dynamic response = await objectProvider.getSchemas(object: object);
+      dynamic response = await objectProvider.getSchemas(
+        object: object,
+        header: header,
+      );
       return response;
     } catch (e) {
       return e.toString();
@@ -88,6 +102,7 @@ class ObjectRepositories {
   editRecord({
     required String object,
     required String docId,
+    dynamic header,
     required dynamic payload,
   }) async {
     try {
@@ -99,6 +114,7 @@ class ObjectRepositories {
         object: object,
         payload: newPayload,
         docId: docId,
+        header: header,
       );
       return response;
     } catch (e) {
@@ -106,30 +122,48 @@ class ObjectRepositories {
     }
   }
 
-  getExternalObject({required String object, required String param}) async {
+  getExternalObject({
+    required String object,
+    required String param,
+    dynamic header,
+  }) async {
     try {
-      Response response =
-          await objectProvider.getExternalObject(object: object, param: param);
+      Response response = await objectProvider.getExternalObject(
+        object: object,
+        param: param,
+        header: header,
+      );
       return response;
     } catch (e) {
       return e.toString();
     }
   }
 
-  searchObject({required dynamic payload}) async {
+  searchObject({
+    required dynamic payload,
+    dynamic header,
+  }) async {
     try {
-      Response response = await objectProvider.searchObject(payload: payload);
+      Response response = await objectProvider.searchObject(
+        payload: payload,
+        header: header,
+      );
       return response;
     } catch (e) {
       return e.toString();
     }
   }
 
-  getRecordById({required String object, required String docId}) async {
+  getRecordById({
+    required String object,
+    required String docId,
+    dynamic header,
+  }) async {
     try {
       Response response = await objectProvider.getRecordById(
         object: object,
         docId: docId,
+        header: header,
       );
       return response;
     } catch (e) {
@@ -137,10 +171,15 @@ class ObjectRepositories {
     }
   }
 
-  searchKnowledge({required dynamic payload}) async {
+  searchKnowledge({
+    required dynamic payload,
+    dynamic header,
+  }) async {
     try {
-      Response response =
-          await objectProvider.searchKnowledge(payload: payload);
+      Response response = await objectProvider.searchKnowledge(
+        payload: payload,
+        header: header,
+      );
       return response;
     } catch (e) {
       return e.toString();

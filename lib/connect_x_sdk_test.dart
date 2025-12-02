@@ -43,33 +43,30 @@ class ConnectXMobileSDK {
   getObjectRecord({
     required String object,
     required dynamic payload,
+    dynamic header,
   }) async {
-    dynamic response = await ObjectRepositories().getRecords(
-      object: object,
-      payload: payload,
-    );
+    dynamic response = await ObjectRepositories()
+        .getRecords(object: object, payload: payload, header: header);
     return response;
   }
 
   countObjectRecord({
     required String object,
     required dynamic payload,
+    dynamic header,
   }) async {
-    dynamic response = await ObjectRepositories().countRecords(
-      object: object,
-      payload: payload,
-    );
+    dynamic response = await ObjectRepositories()
+        .countRecords(object: object, payload: payload, header: header);
     return response;
   }
 
   createRecords({
     required String object,
     required dynamic payload,
+    dynamic header,
   }) async {
-    dynamic response = await ObjectRepositories().createRecord(
-      object: object,
-      payload: payload,
-    );
+    dynamic response = await ObjectRepositories()
+        .createRecord(object: object, payload: payload, header: header);
     return response;
   }
 
@@ -77,29 +74,32 @@ class ConnectXMobileSDK {
     required String object,
     required String externalId,
     required dynamic payload,
+    dynamic header,
   }) async {
     dynamic response = await ObjectRepositories().updateRecord(
-      object: object,
-      payload: payload,
-      externalId: externalId,
-    );
+        object: object,
+        payload: payload,
+        externalId: externalId,
+        header: header);
     return response;
   }
 
   uploadImage({
     required String object,
     required dynamic base64Image,
+    dynamic header,
   }) async {
     dynamic response = await UploadImageRepository()
-        .uploadImage(object: object, base64Image: base64Image);
+        .uploadImage(object: object, base64Image: base64Image, header: header);
     return response;
   }
 
   forgotPassword({
     required String username,
+    dynamic header,
   }) async {
-    dynamic response =
-        await LoginRepositories().forgotPassword(username: username);
+    dynamic response = await LoginRepositories()
+        .forgotPassword(username: username, header: header);
     return response;
   }
 
@@ -108,10 +108,12 @@ class ConnectXMobileSDK {
     return response;
   }
 
-  getschemas({required String object}) async {
-    dynamic response = await ObjectRepositories().getSchemas(
-      object: object,
-    );
+  getschemas({
+    required String object,
+    dynamic header,
+  }) async {
+    dynamic response =
+        await ObjectRepositories().getSchemas(object: object, header: header);
     return response;
   }
 
@@ -119,12 +121,10 @@ class ConnectXMobileSDK {
     required String object,
     required String docId,
     required dynamic payload,
+    dynamic header,
   }) async {
     dynamic response = await ObjectRepositories().editRecord(
-      object: object,
-      docId: docId,
-      payload: payload,
-    );
+        object: object, docId: docId, payload: payload, header: header);
     return response;
   }
 

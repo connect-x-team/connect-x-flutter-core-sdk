@@ -11,11 +11,16 @@ import 'package:http/http.dart' as http;
 class UploadImageRepository {
   UploadImageProvider uploadImageProvider = UploadImageProvider();
 
-  uploadImage({required String object, required dynamic base64Image}) async {
+  uploadImage({
+    required String object,
+    required dynamic base64Image,
+    dynamic header,
+  }) async {
     try {
       dynamic response = await uploadImageProvider.uploadImage(
         object: object,
         base64Image: base64Image,
+        header: header,
       );
       return response;
     } catch (e) {
@@ -23,7 +28,11 @@ class UploadImageRepository {
     }
   }
 
-  checkPayload({required String object, required dynamic payload}) async {
+  checkPayload({
+    required String object,
+    required dynamic payload,
+    dynamic header,
+  }) async {
     for (final entry in payload.entries.toList()) {
       final key = entry.key;
       final value = entry.value;
@@ -32,7 +41,11 @@ class UploadImageRepository {
         dynamic pathImage = await getPathImage(path: value);
         if (pathImage == 'image') {
           try {
-            final res = await uploadImage(object: object, base64Image: value);
+            final res = await uploadImage(
+              object: object,
+              base64Image: value,
+              header: header,
+            );
             payload[key] = res['url'];
           } catch (e) {
             return e.toString();
