@@ -34,11 +34,18 @@ class ConnectXMobileSDK {
     return response;
   }
 
-  // resetPassword({required String code, required String password}) async {
-  //   dynamic response =
-  //       await LoginRepositories().resetPassword(code: code, password: password);
-  //   return response;
-  // }
+  resetPassword({
+    required String code,
+    required String password,
+    required String email,
+  }) async {
+    dynamic response = await LoginRepositories().resetPassword(
+      code: code,
+      password: password,
+      email: email,
+    );
+    return response;
+  }
 
   getObjectRecord({
     required String object,

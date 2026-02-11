@@ -69,10 +69,23 @@ class LoginRepositories {
     }
   }
 
-  resetPassword({required String code, required String password}) async {
+  resetPassword({
+    required String code,
+    required String password,
+    required String email,
+  }) async {
     try {
-      dynamic response =
-          await loginProvider.resetPassword(code: code, password: password);
+      String message =
+          "$password${email.toLowerCase().trim()}${AppConfig.token}";
+      final key = utf8.encode(message);
+      final data = utf8.encode('');
+
+      final hmacSha1 = Hmac(sha1, key);
+      final digest = hmacSha1.convert(data);
+      dynamic response = await loginProvider.resetPassword(
+        code: code,
+        password: digest.toString(),
+      );
       return response;
     } catch (e) {
       return e.toString();

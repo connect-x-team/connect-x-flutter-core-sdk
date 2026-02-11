@@ -60,6 +60,9 @@ class HttpService {
     try {
       dynamic localProfile =
           await CoreServiceStorage().getItem(key: AppConfig.loginStorage);
+      if (localProfile == null) {
+        return;
+      }
       var decode = await json.decode(localProfile);
       String token = '';
       if (decode != null) {

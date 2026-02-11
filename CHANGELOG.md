@@ -1,6 +1,6 @@
-## 0.0.2
+## 0.0.3
 
 
-- Add header
+- ADD Reset Password function
 
 

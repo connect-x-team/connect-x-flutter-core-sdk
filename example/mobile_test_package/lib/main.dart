@@ -194,21 +194,6 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               InkWell(
                 onTap: () async {
-                  dynamic res = await ConnectXMobileSDK().forgotPassword(
-                    username: "",
-                  );
-                  print(res);
-                },
-                child: Container(
-                  padding: EdgeInsets.all(16),
-                  child: Text('forgot password'),
-                ),
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              InkWell(
-                onTap: () async {
                   dynamic res = await ConnectXMobileSDK().createRecords(
                     object: 'customers',
                     payload: {
@@ -216,7 +201,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       "cx_customerImage": payload['cx_customerImage']
                     },
                   );
-                  print(res);
                 },
                 child: Container(
                   padding: EdgeInsets.all(16),
@@ -242,6 +226,34 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Container(
                   padding: EdgeInsets.all(16),
                   child: Text('update Record customer '),
+                ),
+              ),
+              InkWell(
+                onTap: () async {
+                  dynamic res = await ConnectXMobileSDK()
+                      .forgotPassword(username: 'agency.ppsi@gmail.com');
+                  print(res);
+                },
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  child: Text('forgot password '),
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              InkWell(
+                onTap: () async {
+                  dynamic res = await ConnectXMobileSDK().resetPassword(
+                    email: '',
+                    code: '',
+                    password: '',
+                  );
+                  print(res);
+                },
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  child: Text('reset password '),
                 ),
               ),
               SizedBox(
@@ -290,7 +302,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   };
                   dynamic res = await ConnectXMobileSDK().inviteUser(
                       body: body, param: "?isSendEmail=false", header: header);
-                  print(res);
                 },
                 child: Container(
                   padding: EdgeInsets.all(16),
@@ -303,11 +314,11 @@ class _MyHomePageState extends State<MyHomePage> {
               InkWell(
                 onTap: () async {
                   dynamic body = {
-                    "docId": "",
-                    "password": "",
-                    "organizeId": "",
-                    "profileName": "",
-                    "email": ""
+                    "docId": "mpT7zygOA881D2Z14k5P",
+                    "password": "P@ssw0rd",
+                    "organizeId": "1Q0AeNr4T9IAs9EcxXos",
+                    "profileName": "externalUser",
+                    "email": "conxppsi002"
                   };
                   dynamic res = await ConnectXMobileSDK().createPassword(
                     body: body,
