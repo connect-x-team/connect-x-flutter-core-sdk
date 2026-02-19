@@ -153,31 +153,35 @@ class ConnectXMobileSDK {
     return response;
   }
 
-  getExternalObject({required String object, required String param}) async {
+  getExternalObject(
+      {required String object, required String param, dynamic header}) async {
     dynamic response = await ObjectRepositories()
         .getExternalObject(object: object, param: param);
     return response;
   }
 
-  uploadFile({required PlatformFile file, required String object}) {
+  uploadFile(
+      {required PlatformFile file, required String object, dynamic header}) {
     dynamic response =
         UploadImageRepository().uploadFile(object: object, file: file);
     return response;
   }
 
-  searchObject({required dynamic payload}) async {
-    dynamic response =
-        await ObjectRepositories().searchObject(payload: payload);
+  searchObject({required dynamic payload, dynamic header}) async {
+    dynamic response = await ObjectRepositories()
+        .searchObject(payload: payload, header: header);
     return response;
   }
 
   getRecordById({
     required String object,
     required dynamic docId,
+    dynamic header,
   }) async {
     dynamic response = await ObjectRepositories().getRecordById(
       object: object,
       docId: docId,
+      header: header,
     );
     return response;
   }
@@ -210,9 +214,9 @@ class ConnectXMobileSDK {
     return response;
   }
 
-  searchKnowledge({required dynamic payload}) async {
-    dynamic response =
-        await ObjectRepositories().searchKnowledge(payload: payload);
+  searchKnowledge({required dynamic payload, dynamic header}) async {
+    dynamic response = await ObjectRepositories()
+        .searchKnowledge(payload: payload, header: header);
     return response;
   }
 
