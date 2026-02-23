@@ -245,11 +245,10 @@ class _MyHomePageState extends State<MyHomePage> {
               InkWell(
                 onTap: () async {
                   dynamic res = await ConnectXMobileSDK().resetPassword(
-                    email: '',
+                    username: '',
                     code: '',
                     password: '',
                   );
-                  print(res);
                 },
                 child: Container(
                   padding: EdgeInsets.all(16),

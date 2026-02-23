@@ -72,11 +72,11 @@ class LoginRepositories {
   resetPassword({
     required String code,
     required String password,
-    required String email,
+    required String username,
   }) async {
     try {
       String message =
-          "$password${email.toLowerCase().trim()}${AppConfig.token}";
+          "$password${username.toLowerCase().trim()}${AppConfig.token}";
       final key = utf8.encode(message);
       final data = utf8.encode('');
 
