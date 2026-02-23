@@ -73,6 +73,7 @@ class LoginRepositories {
     required String code,
     required String password,
     required String username,
+    dynamic header,
   }) async {
     try {
       String message =
@@ -83,9 +84,7 @@ class LoginRepositories {
       final hmacSha1 = Hmac(sha1, key);
       final digest = hmacSha1.convert(data);
       dynamic response = await loginProvider.resetPassword(
-        code: code,
-        password: digest.toString(),
-      );
+          code: code, password: digest.toString(), header: header);
       return response;
     } catch (e) {
       return e.toString();

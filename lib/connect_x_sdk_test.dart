@@ -38,11 +38,13 @@ class ConnectXMobileSDK {
     required String code,
     required String password,
     required String username,
+    dynamic header,
   }) async {
     dynamic response = await LoginRepositories().resetPassword(
       code: code,
       password: password,
       username: username,
+      header: header,
     );
     return response;
   }

@@ -40,12 +40,15 @@ class LoginProvider {
     return response;
   }
 
-  resetPassword({required String code, required String password}) async {
+  resetPassword(
+      {required String code, required String password, dynamic header}) async {
     Uri url = Uri.parse("${AppConfig.url}/connectx/api/auth/resetPassword");
-    dynamic response = await httpService.post(url: url, body: {
+    dynamic body = {
       "forgotPasswordCode": code,
       "password": password,
-    });
+    };
+    dynamic response =
+        await httpService.post(url: url, body: body, header: header);
     return response;
   }
 
