@@ -1,6 +1,6 @@
-## 0.0.6
+## 0.0.7
 
 
-- FIX ISSUE 
+- FIX ISSUE upload file on web
 
 

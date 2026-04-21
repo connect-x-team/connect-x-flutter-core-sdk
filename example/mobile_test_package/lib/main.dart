@@ -3,8 +3,12 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:connect_x_sdk/connect_x_sdk_test.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_test_package/navigator.dart';
+import 'package:mobile_test_package/photo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,13 +41,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   dynamic value;
-  List<PlatformFile> files = [];
-  List upload = [
-    {'name': 'Foward Facing Arms At Side', 'image': null, "file": null},
-    {'name': 'Foward Facing Arms Above The Head', 'image': null, "file": null},
-    {'name': 'Foward Facing Arms At Side', 'image': null, "file": null},
-    {'name': 'Foward Facing Arms At Side', 'image': null, "file": null},
-  ];
+  List fileList = [];
+
+  List upload = [];
   dynamic payload = {};
 
   dynamic header = {
@@ -73,6 +73,77 @@ class _MyHomePageState extends State<MyHomePage> {
     payload['cx_customerImage'] = imageBase64;
   }
 
+  Future<String> getDeviceId() async {
+    final deviceInfo = DeviceInfoPlugin();
+
+    if (Platform.isAndroid) {
+      final android = await deviceInfo.androidInfo;
+      return android.id; // Android ID
+    } else if (Platform.isIOS) {
+      final ios = await deviceInfo.iosInfo;
+      return ios.identifierForVendor ?? "unknown"; // iOS Vendor ID
+    }
+
+    return "unknown";
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final deviceId = await getDeviceId();
+      print(deviceId);
+    });
+  }
+
+  PlatformFile convertPathToPlatformFile(String path) {
+    final file = File(path);
+    final bytes = file.readAsBytesSync();
+
+    return PlatformFile(
+      name: path.split('/').last,
+      path: path,
+      size: bytes.length,
+      bytes: bytes,
+    );
+  }
+
+  PlatformFile convertWebBytesToPlatformFile(Uint8List bytes, String name) {
+    return PlatformFile(
+      name: name,
+      size: bytes.length,
+      bytes: bytes,
+    );
+  }
+
+  uploadFile() async {
+    final uploadFiles = [];
+    print(upload);
+    for (var i = 0; i < upload.length; i++) {
+      PlatformFile item = !kIsWeb
+          ? convertPathToPlatformFile(upload[i]['path'])
+          : convertWebBytesToPlatformFile(
+              upload[i]['bytes'], upload[i]['name']);
+      uploadFiles.add(item);
+    }
+    await Future.delayed(Duration(milliseconds: 300));
+    for (var file in uploadFiles) {
+      print("file $file");
+      dynamic res =
+          await ConnectXMobileSDK().uploadFile(file: file, object: "notes");
+      if (res['url'] != null) {
+        fileList.add({
+          "name": file.name,
+          "size": file.size,
+          "type": res['type'],
+          "url": res['url'],
+          "original": res['original'],
+        });
+      } else {}
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,8 +158,8 @@ class _MyHomePageState extends State<MyHomePage> {
               InkWell(
                 onTap: () async {
                   dynamic res = await ConnectXMobileSDK().loginExternalProfile(
-                    username: "",
-                    password: "",
+                    username: "conx.ppsi@gmail.com",
+                    password: "P@ssw0rd",
                     orgId: '',
                   );
                   users = json.decode(res.body);
@@ -387,6 +458,52 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Container(
                   padding: EdgeInsets.all(16),
                   child: Text('verifyOTP'),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  CoreServiceNavigator().bottomSheet(
+                    context: context,
+                    child: CoreServicePhoto().selectType(
+                      context: context,
+                      onSelect: (PlatformFile image) async {
+                        dynamic item = {};
+                        if (!kIsWeb) {
+                          item['path'] = image.path;
+                        }
+                        item['bytes'] = image.bytes;
+                        item['extension'] = image.extension;
+                        item['name'] = image.name;
+                        upload.add(item);
+                        setState(() {});
+                      },
+                    ),
+                  );
+                },
+                child: Container(
+                  width: 180,
+                  height: 120,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Upload",
+                        style: TextStyle(),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              InkWell(
+                onTap: () async {
+                  uploadFile();
+                },
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  child: Text('upload file'),
                 ),
               ),
             ],
